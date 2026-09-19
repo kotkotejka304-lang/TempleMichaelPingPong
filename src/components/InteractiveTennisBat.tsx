@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export const InteractiveTennisBat: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isFlipped, setIsFlipped] = useState(false);
   const [isSwinging, setIsSwinging] = useState(false);
   const [showSparks, setShowSparks] = useState(false);
-  const [activeSide, setActiveSide] = useState<'black' | 'red'>('black');
   const [isInteracting, setIsInteracting] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
 
   // Smooth mouse tilt tracking & gentle idle animation on mobile
   useEffect(() => {
@@ -55,7 +53,7 @@ export const InteractiveTennisBat: React.FC = () => {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length > 0) {
       const touch = e.touches[0];
-      touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+      touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
       setIsInteracting(true);
       updateTouchPos(touch.clientX, touch.clientY);
     }
@@ -80,6 +78,12 @@ export const InteractiveTennisBat: React.FC = () => {
   };
 
   const handleTouchEnd = () => {
+    if (touchStartRef.current) {
+      const elapsed = Date.now() - touchStartRef.current.time;
+      if (elapsed < 400) {
+        triggerSwing();
+      }
+    }
     touchStartRef.current = null;
     setIsInteracting(false);
   };
@@ -90,6 +94,13 @@ export const InteractiveTennisBat: React.FC = () => {
 
   const triggerSwing = () => {
     if (isSwinging) return;
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      try {
+        navigator.vibrate(30);
+      } catch {
+        // Ignore haptic feedback errors if unavailable
+      }
+    }
     setIsSwinging(true);
     setShowSparks(true);
 
@@ -102,15 +113,9 @@ export const InteractiveTennisBat: React.FC = () => {
     }, 550);
   };
 
-  const toggleFlip = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    setIsFlipped((prev) => !prev);
-    setActiveSide((prev) => (prev === 'black' ? 'red' : 'black'));
-  };
-
   // Dynamic calculate angles
   const rotX = isSwinging ? -25 : -mousePos.y * 16;
-  const rotY = isFlipped ? 180 + mousePos.x * 16 : mousePos.x * 16;
+  const rotY = mousePos.x * 16;
   const rotZ = isSwinging ? 18 : -14 + mousePos.x * 6;
   const scale = isSwinging ? 1.08 : 1;
 
@@ -128,14 +133,23 @@ export const InteractiveTennisBat: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-full border border-white/5 pointer-events-none animate-[spin_60s_linear_infinite]"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full border border-[#ccff00]/10 border-dashed pointer-events-none"></div>
 
-      {/* Interactive 3D Perspective Stage (Touch-enabled for mobile) */}
+      {/* Interactive 3D Perspective Stage (Click / Press to swing) */}
       <div
         ref={containerRef}
         onClick={handleBatClick}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative w-64 h-64 xs:w-72 xs:h-72 sm:w-84 sm:h-84 md:w-96 md:h-96 cursor-pointer flex items-center justify-center touch-pan-y"
+        role="button"
+        tabIndex={0}
+        aria-label="Interactive Table Tennis Bat - Press or tap to swing"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            triggerSwing();
+          }
+        }}
+        className="relative w-64 h-64 xs:w-72 xs:h-72 sm:w-84 sm:h-84 md:w-96 md:h-96 cursor-pointer flex items-center justify-center touch-pan-y active:scale-95 transition-transform"
         style={{
           perspective: '1000px',
         }}
@@ -258,13 +272,13 @@ export const InteractiveTennisBat: React.FC = () => {
               opacity="0.9"
             />
 
-            {/* 3. MAIN RUBBER SHEET (DYNAMIC COLOR: BLACK OR RED) */}
+            {/* 3. MAIN RUBBER SHEET */}
             <ellipse
               cx="200"
               cy="182"
               rx="126"
               ry="136"
-              fill={isFlipped ? 'url(#rubberRed)' : 'url(#rubberBlack)'}
+              fill="url(#rubberBlack)"
               stroke="#07090d"
               strokeWidth="3"
             />
@@ -485,43 +499,14 @@ export const InteractiveTennisBat: React.FC = () => {
 
       </div>
 
-      {/* INTERACTIVE CONTROLS DOCK (FLIP RUBBER & STRIKE SWING) - Touch-friendly 44px+ buttons */}
-      <div className="mt-3 sm:mt-4 flex flex-wrap items-center justify-center gap-2.5 font-mono text-xs z-20 w-full px-2">
-        
-        {/* Flip Rubber Button */}
-        <button
-          onClick={toggleFlip}
-          className="min-h-[44px] px-4 py-2 rounded-xl border border-white/15 bg-[#090e18]/95 hover:border-[#ccff00]/60 active:border-[#ccff00] text-slate-300 hover:text-white transition-all flex items-center justify-center space-x-2 shadow-lg active:scale-95 text-xs select-none touch-manipulation flex-1 sm:flex-initial"
-          title="Flip Bat 180° to inspect alternate rubber surface"
-        >
-          <i className="fa-solid fa-arrows-rotate text-[#ccff00]"></i>
-          <span className="whitespace-nowrap">
-            RUBBER: <strong className={isFlipped ? 'text-rose-400' : 'text-[#ccff00]'}>{isFlipped ? 'CRIMSON RED' : 'STEALTH BLACK'}</strong>
-          </span>
-        </button>
-
-        {/* Test Swing Button */}
-        <button
-          onClick={triggerSwing}
-          disabled={isSwinging}
-          className="min-h-[44px] px-5 py-2 rounded-xl border border-[#ccff00]/50 bg-[#ccff00]/15 hover:bg-[#ccff00]/25 active:bg-[#ccff00]/30 text-[#ccff00] font-bold transition-all flex items-center justify-center space-x-2 shadow-lg active:scale-95 text-xs select-none touch-manipulation flex-1 sm:flex-initial"
-        >
-          <i className={`fa-solid fa-bolt ${isSwinging ? 'animate-bounce' : ''}`}></i>
-          <span className="whitespace-nowrap">{isSwinging ? 'SWINGING!' : 'SWING BAT'}</span>
-        </button>
-
-      </div>
-
-      {/* Floating Modern Telemetry Badges with mobile hint */}
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-[10px] text-slate-400 text-center px-2">
+      {/* Modern Specification Badges */}
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-[10px] text-slate-400 text-center px-2">
         <span className="flex items-center space-x-1">
           <span className="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
           <span>5-PLY KOTO + 2 ALC CARBON</span>
         </span>
         <span className="hidden xs:inline">•</span>
-        <span className="text-[#ccff00]/80">DRAG OR TILT 3D</span>
-        <span className="hidden xs:inline">•</span>
-        <span>TAP TO STRIKE</span>
+        <span className="text-slate-300">INTERACTIVE 3D PERSPECTIVE</span>
       </div>
 
     </div>
