@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" fill="none" className="w-full h-full">
+  <defs>
+    <!-- Gold Metallic Gradients -->
+    <linearGradient id="tmcGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a8" />
+      <stop offset="25%" stop-color="#e8b931" />
+      <stop offset="50%" stop-color="#fdf1a9" />
+      <stop offset="75%" stop-color="#c99718" />
+      <stop offset="100%" stop-color="#8a6308" />
+    </linearGradient>
+
+    <linearGradient id="tmcGoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c99718" />
+      <stop offset="100%" stop-color="#694d07" />
+    </linearGradient>
+
+    <!-- Deep Royal Navy Shield Gradient -->
+    <radialGradient id="tmcShieldBlue" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#2a4594" />
+      <stop offset="50%" stop-color="#162968" />
+      <stop offset="85%" stop-color="#0e1b48" />
+      <stop offset="100%" stop-color="#08102e" />
+    </radialGradient>
+
+    <!-- Torch Flame Gradient -->
+    <linearGradient id="tmcFlame" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="40%" stop-color="#f97316" />
+      <stop offset="75%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Parchment Scroll Gradient -->
+    <linearGradient id="tmcParchment" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#fef3c7" />
+      <stop offset="80%" stop-color="#fde68a" />
+      <stop offset="100%" stop-color="#d4b060" />
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="tmcShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#tmcShadow)">
+    <!-- TOP BANNER FOLDS (RIBBON BACK ENDS) -->
+    <!-- Left ribbon tail -->
+    <path d="M 42 75 L 75 75 L 75 52 L 42 52 L 54 63 Z" fill="#0d183d" stroke="url(#tmcGold)" stroke-width="1.8" />
+    <path d="M 75 75 L 85 75 L 75 60 Z" fill="#694d07" />
+    
+    <!-- Right ribbon tail -->
+    <path d="M 258 75 L 225 75 L 225 52 L 258 52 L 246 63 Z" fill="#0d183d" stroke="url(#tmcGold)" stroke-width="1.8" />
+    <path d="M 225 75 L 215 75 L 225 60 Z" fill="#694d07" />
+
+    <!-- TOP CURVED BANNER BODY -->
+    <path d="M 72 73 C 110 50, 190 50, 228 73 C 235 60, 228 44, 220 42 C 185 30, 115 30, 80 42 C 72 44, 65 60, 72 73 Z" 
+          fill="#13235b" stroke="url(#tmcGold)" stroke-width="2.5" />
+    <!-- Inner gold hairline on top ribbon -->
+    <path d="M 77 67 C 112 47, 188 47, 223 67" fill="none" stroke="url(#tmcGold)" stroke-width="0.8" opacity="0.8" />
+
+    <!-- Text: Templemichael (Arched along top ribbon) -->
+    <path id="topRibbonPath" d="M 78 63 Q 150 42 222 63" fill="none" />
+    <text font-family="'Cinzel', 'Times New Roman', serif" font-weight="bold" font-size="14" fill="url(#tmcGold)" letter-spacing="1.5">
+      <textPath href="#topRibbonPath" startOffset="50%" text-anchor="middle">
+        Templemichael
+      </textPath>
+    </text>
+
+
+    <!-- HERALDIC SHIELD -->
+    <!-- Shield Outer Gold Rim & Thick Border -->
+    <path d="M 150 286 C 180 260, 236 215, 240 126 C 240 108, 204 100, 150 106 C 96 100, 60 108, 60 126 C 64 215, 120 260, 150 286 Z" 
+          fill="url(#tmcShieldBlue)" stroke="url(#tmcGold)" stroke-width="4.5" stroke-linejoin="round" />
+    
+    <!-- Shield Inner Inset Gold Line -->
+    <path d="M 150 278 C 176 254, 228 210, 232 130 C 232 116, 198 108, 150 114 C 102 108, 68 116, 68 130 C 72 210, 124 254, 150 278 Z" 
+          fill="none" stroke="url(#tmcGold)" stroke-width="1.5" opacity="0.9" />
+
+    <!-- Shield Interior Damask Flourish texture -->
+    <path d="M 85 140 Q 110 135 125 150 Q 140 130 150 145 Q 160 130 175 150 Q 190 135 215 140" fill="none" stroke="#253b7c" stroke-width="1.2" opacity="0.4" />
+    <path d="M 95 190 Q 115 185 130 200 Q 150 180 170 200 Q 185 185 205 190" fill="none" stroke="#253b7c" stroke-width="1.2" opacity="0.4" />
+
+
+    <!-- EMBLEMS INSIDE THE SHIELD -->
+
+    <!-- 1. TOP CENTER: FLAMING TORCH OF LEARNING -->
+    <g transform="translate(150, 152)">
+      <!-- Torch Flame -->
+      <path d="M 0 -38 C 10 -30, 12 -18, 5 -12 C 10 -15, 16 -12, 13 -4 C 10 2, 2 6, 0 8 C -2 6, -10 2, -13 -4 C -16 -12, -10 -15, -5 -12 C -12 -18, -10 -30, 0 -38 Z" 
+            fill="url(#tmcFlame)" filter="drop-shadow(0 0 4px #fbbf24)" />
+      <!-- Torch Inner Core Flame -->
+      <path d="M 0 -28 C 4 -22, 5 -15, 2 -10 C -2 -10, -4 -15, 0 -28 Z" fill="#ffffff" opacity="0.8" />
+      <!-- Torch Bowl / Chalice -->
+      <path d="M -12 8 L 12 8 L 8 16 L -8 16 Z" fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.8" />
+      <line x1="-10" y1="12" x2="10" y2="12" stroke="#694d07" stroke-width="0.8" />
+      <!-- Torch Handle / Column -->
+      <path d="M -6 16 L 6 16 L 4 38 L -4 38 Z" fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.8" />
+      <!-- Torch Base Pommel -->
+      <circle cx="0" cy="40" r="4" fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.6" />
+    </g>
+
+
+    <!-- 2. LEFT: WINGED ATHLETIC SANDAL / FOOT -->
+    <g transform="translate(108, 178)">
+      <!-- Wing feathers pointing upward-left -->
+      <path d="M -16 -16 C -18 -8, -12 -2, -4 2 C -8 -4, -10 -12, -4 -18 C -10 -20, -14 -18, -16 -16 Z" 
+            fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.8" />
+      <path d="M -10 -24 C -8 -16, -2 -12, 4 -8 C 0 -14, -2 -22, 4 -26 C -2 -28, -8 -26, -10 -24 Z" 
+            fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.8" />
+      <!-- Foot and Sandal Straps -->
+      <path d="M -8 -4 C -2 -6, 8 -6, 14 0 C 18 4, 18 12, 10 16 C 4 19, -4 19, -10 16 C -14 13, -14 4, -8 -4 Z" 
+            fill="url(#tmcGold)" stroke="#694d07" stroke-width="1" />
+      <!-- Straps across ankle -->
+      <line x1="-6" y1="2" x2="10" y2="6" stroke="#694d07" stroke-width="1.2" />
+      <line x1="-4" y1="8" x2="8" y2="12" stroke="#694d07" stroke-width="1.2" />
+      <!-- Sandal Sole -->
+      <path d="M -10 16 Q 2 21 12 16" fill="none" stroke="#694d07" stroke-width="2" stroke-linecap="round" />
+    </g>
+
+
+    <!-- 3. RIGHT: HAND HOLDING TRADITIONAL IRISH HARP & TOOL -->
+    <g transform="translate(188, 178)">
+      <!-- Harp Frame (Cláirseach Pillar & Harmonic Curve) -->
+      <path d="M -6 -24 C 6 -20, 14 -10, 16 6 L 12 16 L 2 16 L -4 -20 Z" 
+            fill="url(#tmcGold)" stroke="#694d07" stroke-width="1" />
+      <!-- Harp Soundbox & Strings -->
+      <line x1="0" y1="-14" x2="6" y2="14" stroke="#e8b931" stroke-width="0.8" />
+      <line x1="4" y1="-10" x2="9" y2="14" stroke="#e8b931" stroke-width="0.8" />
+      <line x1="8" y1="-6" x2="12" y2="14" stroke="#e8b931" stroke-width="0.8" />
+      <!-- Hand / Forearm grasping the pillar -->
+      <path d="M -18 8 C -14 4, -8 4, -2 6 L 2 12 L -12 18 C -16 16, -20 12, -18 8 Z" 
+            fill="url(#tmcGold)" stroke="#694d07" stroke-width="1" />
+      <!-- Fingers wrapped -->
+      <circle cx="-1" cy="9" r="2" fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.6" />
+      <circle cx="2" cy="11" r="2" fill="url(#tmcGold)" stroke="#694d07" stroke-width="0.6" />
+      <!-- Cross staff / artisan tool -->
+      <line x1="-16" y1="-16" x2="16" y2="18" stroke="url(#tmcGoldDark)" stroke-width="2.2" stroke-linecap="round" />
+    </g>
+
+
+    <!-- 4. BOTTOM CENTER: PARCHMENT SCROLL INSCRIBED "TC" -->
+    <g transform="translate(150, 235)">
+      <!-- Curled Parchment Body -->
+      <path d="M -22 -14 C -16 -18, 16 -18, 22 -14 C 26 -8, 24 12, 20 18 C 14 22, -14 22, -20 18 C -26 12, -26 -8, -22 -14 Z" 
+            fill="url(#tmcParchment)" stroke="#8a6308" stroke-width="1.2" />
+      <!-- Top and bottom scroll rolls -->
+      <ellipse cx="-20" cy="-14" rx="4" ry="2.5" fill="#d4b060" stroke="#694d07" stroke-width="0.7" />
+      <ellipse cx="20" cy="18" rx="4" ry="2.5" fill="#d4b060" stroke="#694d07" stroke-width="0.7" />
+      <path d="M -20 -12 Q 0 -15 18 -12" fill="none" stroke="#8a6308" stroke-width="0.8" />
+      <path d="M -18 16 Q 0 13 20 16" fill="none" stroke="#8a6308" stroke-width="0.8" />
+      <!-- Calligraphic Initials: TC (Templemichael College) -->
+      <text x="0" y="5" font-family="'Cinzel', 'Times New Roman', serif" font-weight="900" font-size="14" fill="#451a03" text-anchor="middle" letter-spacing="1">
+        TC
+      </text>
+    </g>
+
+
+    <!-- BOTTOM BANNER FOLDS (RIBBON BACK ENDS) -->
+    <!-- Left tail -->
+    <path d="M 32 305 L 75 305 L 75 282 L 32 282 L 44 293 Z" fill="#0d183d" stroke="url(#tmcGold)" stroke-width="1.8" />
+    <path d="M 75 305 L 88 305 L 75 290 Z" fill="#694d07" />
+    
+    <!-- Right tail -->
+    <path d="M 268 305 L 225 305 L 225 282 L 268 282 L 256 293 Z" fill="#0d183d" stroke="url(#tmcGold)" stroke-width="1.8" />
+    <path d="M 225 305 L 212 305 L 225 290 Z" fill="#694d07" />
+
+    <!-- BOTTOM CURVED BANNER BODY -->
+    <path d="M 72 284 C 110 270, 190 270, 228 284 C 235 298, 226 318, 218 322 C 185 332, 115 332, 82 322 C 74 318, 65 298, 72 284 Z" 
+          fill="#13235b" stroke="url(#tmcGold)" stroke-width="2.5" />
+    <!-- Inner gold hairline on bottom ribbon -->
+    <path d="M 78 290 C 112 278, 188 278, 222 290" fill="none" stroke="url(#tmcGold)" stroke-width="0.8" opacity="0.8" />
+
+    <!-- Text: College -->
+    <path id="botRibbonPath" d="M 85 308 Q 150 318 215 308" fill="none" />
+    <text font-family="'Cinzel', 'Times New Roman', serif" font-weight="bold" font-size="14" fill="url(#tmcGold)" letter-spacing="2">
+      <textPath href="#botRibbonPath" startOffset="50%" text-anchor="middle">
+        College
+      </textPath>
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    background-color: #06080d;
+    color: #f1f5f9;
+    touch-action: manipulation;
+  }
+
+  .font-pixel {
+    font-family: 'Silkscreen', monospace;
+  }
+
+  .font-display-brutal {
+    font-family: 'Syne', 'Space Grotesk', sans-serif;
+  }
+
+  .font-tech {
+    font-family: 'Chakra Petch', sans-serif;
+  }
+}
+
+/* Cosmic / Topographic Contour Background Lines matching the reference screenshot */
+.contour-bg {
+  background-color: #06080d;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(204, 255, 0, 0.08), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30, 58, 138, 0.15), transparent),
+    repeating-radial-gradient(circle at 50% 45%, transparent 0, transparent 40px, rgba(255, 255, 255, 0.02) 41px, transparent 42px);
+}
+
+.topographic-lines {
+  background-image: 
+    radial-gradient(circle at 50% 50%, transparent 20%, rgba(255, 255, 255, 0.015) 21%, transparent 22%),
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(255, 255, 255, 0.015) 41%, transparent 42%),
+    radial-gradient(circle at 50% 50%, transparent 60%, rgba(255, 255, 255, 0.015) 61%, transparent 62%),
+    radial-gradient(circle at 50% 50%, transparent 80%, rgba(255, 255, 255, 0.015) 81%, transparent 82%);
+}
+
+/* Glassmorphism & Brutalist neon borders */
+.brutal-card {
+  background: rgba(12, 16, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brutal-card:hover {
+  border-color: rgba(204, 255, 0, 0.5);
+  box-shadow: 0 0 35px -5px rgba(204, 255, 0, 0.2);
+}
+
+.neon-lime-text {
+  color: #ccff00;
+  text-shadow: 0 0 25px rgba(204, 255, 0, 0.45);
+}
+
+.neon-lime-glow {
+  box-shadow: 0 0 30px -5px rgba(204, 255, 0, 0.55);
+}
+
+.brutal-border-lime {
+  border-color: #ccff00;
+}
+
+.brutal-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brutal-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(204, 255, 0, 0.4);
+}
+
+.brutal-input {
+  background: rgba(10, 14, 22, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s ease;
+}
+
+.brutal-input:focus {
+  border-color: #ccff00;
+  box-shadow: 0 0 0 2px rgba(204, 255, 0, 0.25);
+  outline: none;
+}
+
